@@ -1,5 +1,4 @@
 
-````markdown
 ![Project Architecture](project_arch/realtime.drawio.png)
 
 # Real-Time Data Pipeline: API to Cassandra via Kafka & Spark
@@ -36,30 +35,33 @@ The Spark engine performs several critical "Bronze to Silver" level transformati
 
 ## Setup and Installation
 
-1. **Prerequisites**  
-   - Docker and Docker Compose installed.  
-   - Spark 3.5.x and Cassandra 3.x/4.x.
+### 1. Prerequisites
 
-2. **Infrastructure Setup**  
-   Ensure your Docker containers for Kafka and Cassandra are running:  
-   ```bash
-   docker-compose up -d
+- Docker and Docker Compose installed.  
+- Spark 3.5.x and Cassandra 3.x/4.x.
+
+### 2. Infrastructure Setup
+
+Ensure your Docker containers for Kafka and Cassandra are running:
+
+```bash
+docker-compose up -d
 ````
 
-3. **Kafka Topic Creation**
+### 3. Kafka Topic Creation
 
-   ```bash
-   docker exec -it kafka_job1 kafka-topics --create --topic random_users --bootstrap-server localhost:9092
-   ```
+```bash
+docker exec -it kafka_job1 kafka-topics --create --topic random_users --bootstrap-server localhost:9092
+```
 
-4. **Running the Pipeline**
+### 4. Running the Pipeline
 
-   * **Airflow:** Enable the `stream_randomuser_to_kafka` DAG to start the producer.
-   * **Spark:** Submit the streaming job:
+* **Airflow:** Enable the `stream_randomuser_to_kafka` DAG to start the producer.
+* **Spark:** Submit the streaming job:
 
-   ```bash
-   spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,com.datastax.spark:spark-cassandra-connector_2.12:3.4.1 main_script.py
-   ```
+```bash
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,com.datastax.spark:spark-cassandra-connector_2.12:3.4.1 main_script.py
+```
 
 ## Data Schema (Cassandra)
 
@@ -81,7 +83,6 @@ The `user_data.users` table is defined as follows:
 * **Dashboarding:** Build a PowerBI or Grafana dashboard directly on top of the Cassandra keyspace.
 
 ```
-
  
 
 Do you want me to do that next?
