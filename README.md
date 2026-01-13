@@ -85,5 +85,5 @@ The `user_data.users` table is defined as follows:
 ```
  
 
-Do you want me to do that next?
+
 ```
