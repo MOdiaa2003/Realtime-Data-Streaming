@@ -80,7 +80,9 @@ The `user_data.users` table is defined as follows:
 * **Data Quality:** Implement Great Expectations for real-time data validation.
 * **Dashboarding:** Build a PowerBI or Grafana dashboard directly on top of the Cassandra keyspace.
 
+```
 
+ 
 
 Do you want me to do that next?
 ```
