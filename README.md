@@ -1,3 +1,5 @@
+
+````markdown
 ![Project Architecture](project_arch/realtime.drawio.png)
 
 # Real-Time Data Pipeline: API to Cassandra via Kafka & Spark
@@ -42,34 +44,43 @@ The Spark engine performs several critical "Bronze to Silver" level transformati
    Ensure your Docker containers for Kafka and Cassandra are running:  
    ```bash
    docker-compose up -d
-Kafka Topic Creation
+````
 
-bash
-نسخ الكود
-docker exec -it kafka_job1 kafka-topics --create --topic random_users --bootstrap-server localhost:9092
-Running the Pipeline
+3. **Kafka Topic Creation**
 
-Airflow: Enable the stream_randomuser_to_kafka DAG to start the producer.
+   ```bash
+   docker exec -it kafka_job1 kafka-topics --create --topic random_users --bootstrap-server localhost:9092
+   ```
 
-Spark: Submit the streaming job:
+4. **Running the Pipeline**
 
-bash
-نسخ الكود
-spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,com.datastax.spark:spark-cassandra-connector_2.12:3.4.1 main_script.py
-Data Schema (Cassandra)
-The user_data.users table is defined as follows:
+   * **Airflow:** Enable the `stream_randomuser_to_kafka` DAG to start the producer.
+   * **Spark:** Submit the streaming job:
 
-Column	Type	Description
-user_id	TEXT	Primary Key (UUID)
-first_name	TEXT	User first name
-email	TEXT	Validated email address
-address	TEXT	Concatenated full address
-date_of_birth	TIMESTAMP	Converted DOB
-registration_date	TIMESTAMP	Spark-processed timestamp
+   ```bash
+   spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,com.datastax.spark:spark-cassandra-connector_2.12:3.4.1 main_script.py
+   ```
 
-Future Enhancements
-Monitoring: Integrate Prometheus and Grafana for Spark UI and Kafka lag monitoring.
+## Data Schema (Cassandra)
 
-Data Quality: Implement Great Expectations for real-time data validation.
+The `user_data.users` table is defined as follows:
 
-Dashboarding: Build a PowerBI or Grafana dashboard directly on top of the Cassandra keyspace.
+| Column            | Type      | Description               |
+| ----------------- | --------- | ------------------------- |
+| user_id           | TEXT      | Primary Key (UUID)        |
+| first_name        | TEXT      | User first name           |
+| email             | TEXT      | Validated email address   |
+| address           | TEXT      | Concatenated full address |
+| date_of_birth     | TIMESTAMP | Converted DOB             |
+| registration_date | TIMESTAMP | Spark-processed timestamp |
+
+## Future Enhancements
+
+* **Monitoring:** Integrate Prometheus and Grafana for Spark UI and Kafka lag monitoring.
+* **Data Quality:** Implement Great Expectations for real-time data validation.
+* **Dashboarding:** Build a PowerBI or Grafana dashboard directly on top of the Cassandra keyspace.
+
+
+
+Do you want me to do that next?
+```
