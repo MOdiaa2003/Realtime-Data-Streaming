@@ -1,4 +1,6 @@
+Here is your professional **README.md** file, formatted with consistent structure and including the image path as requested.
 
+---
 
 # Real-Time Data Pipeline: API to Cassandra via Kafka & Spark
 
@@ -8,10 +10,10 @@ This project implements a scalable, real-time data engineering pipeline that fet
 
 The pipeline follows a modern "Medallion" inspired streaming architecture:
 
-1. **Orchestration (Apache Airflow):** Triggers a `PythonOperator` to fetch data from the RandomUser API and produce messages to Kafka.
-2. **Ingestion (Apache Kafka):** Acts as the decoupled message buffer, holding raw JSON data in the `random_users` topic.
-3. **Processing (Apache Spark Structured Streaming):** Consumes the stream, flattens the nested JSON, performs data cleaning/type casting, and handles schema enforcement.
-4. **Storage (Apache Cassandra):** Serves as the sink for the processed high-velocity data, organized for efficient time-series or user-based queries.
+* **Orchestration (Apache Airflow):** Triggers a `PythonOperator` to fetch data from the RandomUser API and produce messages to Kafka.
+* **Ingestion (Apache Kafka):** Acts as the decoupled message buffer, holding raw JSON data in the `random_users` topic.
+* **Processing (Apache Spark Structured Streaming):** Consumes the stream, flattens the nested JSON, performs data cleaning/type casting, and handles schema enforcement.
+* **Storage (Apache Cassandra):** Serves as the sink for the processed high-velocity data, organized for efficient time-series or user-based queries.
 
 ---
 
@@ -28,7 +30,7 @@ The pipeline follows a modern "Medallion" inspired streaming architecture:
 
 ## ## Preprocessing & Transformations
 
-The Spark engine performs several critical "Bronze to Silver" level transformations:
+The Spark engine performs several critical **"Bronze to Silver"** level transformations:
 
 * **Flattening:** Expands nested JSON structures (e.g., `location`, `name`, `login`) into a flat tabular schema.
 * **Data Cleaning:** Standardizes gender strings, trims whitespace, and handles missing values using default constants.
@@ -47,7 +49,7 @@ The Spark engine performs several critical "Bronze to Silver" level transformati
 
 ### 2. Infrastructure Setup
 
-Ensure your Docker containers for Kafka and Cassandra are running.
+Ensure your Docker containers for Kafka and Cassandra are running:
 
 ```bash
 docker-compose up -d
@@ -63,14 +65,13 @@ docker exec -it kafka_job1 kafka-topics --create --topic random_users --bootstra
 
 ### 4. Running the Pipeline
 
-1. **Airflow:** Enable the `stream_randomuser_to_kafka` DAG to start the producer.
-2. **Spark:** Submit the streaming job:
+* **Airflow:** Enable the `stream_randomuser_to_kafka` DAG to start the producer.
+* **Spark:** Submit the streaming job:
+
 ```bash
 spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,com.datastax.spark:spark-cassandra-connector_2.12:3.4.1 main_script.py
 
 ```
-
-
 
 ---
 
@@ -97,4 +98,4 @@ The `user_data.users` table is defined as follows:
 
 ---
 
-**Would you like me to create the `docker-compose.yml` file needed to run these services together?**
+**Would you like me to generate the `docker-compose.yml` file to help you set up this entire environment quickly?**
